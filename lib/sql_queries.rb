@@ -50,9 +50,11 @@ end
 
 def selects_the_category_name_and_the_sum_total_of_the_all_its_pledges_for_the_books_category
     "SELECT 
-  projects.category, pledges.amount
+  projects.category,
+  SUM(amount)
   FROM projects
-  INNER JOIN pledges WHERE
+  INNER JOIN pledges
+  ON projects.id
   pledges.project_id = projects.id
   AND projects.category = 'books' ;"
 end
